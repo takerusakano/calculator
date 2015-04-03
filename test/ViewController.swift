@@ -103,6 +103,7 @@ class ViewController: UIViewController {
         case myButtonPlus,myButtonMulti,myButtonMinus,myButtonDvision:
         myCommand.text=sender.titleLabel!.text!;
         command=sender.titleLabel!.text!;
+        right="";
         inputR=true;
         break;
         case myButtonEqual:
@@ -143,7 +144,7 @@ class ViewController: UIViewController {
                 myLabel.text="\(result!)";
                 myCommand.text="";
                 left="";
-                right="";
+                //right="";
                 inputR=false;
             }
             break;
