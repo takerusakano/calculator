@@ -106,7 +106,7 @@ class ViewController: UIViewController {
         inputR=true;
         break;
         case myButtonEqual:
-            if inputR{
+            if (right != ""){
                 switch command{
                     case "+":
                         if result==nil{
@@ -160,13 +160,21 @@ class ViewController: UIViewController {
             inputR=false;
             break;
         case myButtonMm:
+            if(result != nil){
             mResult-=result!;
+            }else{
+                mResult-=left.toInt()!;
+            }
             break;
         case myButtonMc :
             mResult=0;
             break;
         case myButtonMp :
+            if(result != nil){
             mResult+=result!;
+            }else{
+                mResult+=left.toInt()!;
+            }
             break;
         case myButtonMr:
             myLabel.text="\(mResult)";
