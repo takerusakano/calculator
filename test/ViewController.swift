@@ -205,7 +205,7 @@ class ViewController: UIViewController {
         case myButtonMm:
             if(result != nil){
             mResult-=result!;
-            }else{
+            }else if left != "" {
                 mResult-=left.toInt()!;
             }
             left="";
@@ -217,7 +217,7 @@ class ViewController: UIViewController {
         case myButtonMp :
             if(result != nil){
             mResult+=result!;
-            }else{
+            }else if left != "" {
                 mResult+=left.toInt()!;
             }
             left="";
