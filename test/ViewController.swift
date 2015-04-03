@@ -62,6 +62,7 @@ class ViewController: UIViewController {
     var right:String="";
     var inputR:Bool=false;
     var command:String=" ";
+    var pushuE:Bool=true
     
     var result:Int?;
     var mResult:Int=0;
@@ -103,6 +104,46 @@ class ViewController: UIViewController {
         case myButtonPlus,myButtonMulti,myButtonMinus,myButtonDvision:
         myCommand.text=sender.titleLabel!.text!;
         command=sender.titleLabel!.text!;
+        if pushuE {
+        if (right != ""){
+            switch command{
+            case "+":
+                if result==nil{
+                    result=left.toInt()!+right.toInt()!;
+                }else{
+                    result!+=right.toInt()!;
+                }
+                break;
+            case "-":
+                if result==nil{
+                    result=left.toInt()!-right.toInt()!;
+                }else{
+                    result!-=right.toInt()!;
+                }
+                break;
+            case "*":
+                if result==nil{
+                    result=left.toInt()!*right.toInt()!;
+                }else{
+                    result!*=right.toInt()!;
+                }
+                break;
+            case "/":
+                if result==nil{
+                    result=left.toInt()!/right.toInt()!;
+                }else{
+                    result!/=right.toInt()!;
+                }
+                break;
+            default :
+                result=0;
+                break;
+            }
+            myLabel.text="\(result!)";
+            left="";
+            inputR=false;
+        }
+        }
         right="";
         inputR=true;
         break;
@@ -144,13 +185,14 @@ class ViewController: UIViewController {
                 myLabel.text="\(result!)";
                 myCommand.text="";
                 left="";
-                //right="";
                 inputR=false;
             }
+            pushuE=false;
             break;
         case myButtonClear:
             myLabel.text="";
             right="";
+            inputR=true;
             break;
         case myButtonAllClear:
             myCommand.text="";
@@ -166,6 +208,8 @@ class ViewController: UIViewController {
             }else{
                 mResult-=left.toInt()!;
             }
+            left="";
+            inputR=false;
             break;
         case myButtonMc :
             mResult=0;
@@ -176,9 +220,13 @@ class ViewController: UIViewController {
             }else{
                 mResult+=left.toInt()!;
             }
+            left="";
+            inputR=false;
             break;
         case myButtonMr:
             myLabel.text="\(mResult)";
+            left="";
+            inputR=false;
             break;
         case myButtonNext:
             let mySecondViewController: UIViewController = SecondViewContoroller();
@@ -186,6 +234,7 @@ class ViewController: UIViewController {
             self.presentViewController(mySecondViewController, animated: true, completion: nil)
             break;
         default:
+            pushuE=true;
             if inputR{
                 right+=sender.titleLabel!.text!;
                 myLabel.text=right;
